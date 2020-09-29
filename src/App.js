@@ -13,11 +13,7 @@ import LoginPage from "./components/Login/Login";
 
 
 const App = (props) => {
-
-    /*let someComponent = () => <Profile posts={props.appState.posts}/>*/
-
-    /*let someComponentDialogs = () => <Dialogs dialogs={props.appState.dialogs} messages={props.appState.messages}/>*/
-
+    
     return (
 
         <div className='app-wrapper'>
