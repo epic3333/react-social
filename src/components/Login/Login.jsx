@@ -28,7 +28,5 @@ const Login = (props) => {
                 <LoginReduxForm/>
             </div>
 }
-//test
-//test
 
 export default Login;
