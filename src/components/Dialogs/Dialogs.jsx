@@ -22,6 +22,10 @@ const Dialogs = (props) => {
         props.updateNewMessageBody(body);
     }
 
+    let addNewMessage = (values) => {
+        alert(values.newMessageBody);
+    }
+
     if (!props.isAuth) return <Redirect to='/login'/>;
 
     return (
@@ -33,7 +37,7 @@ const Dialogs = (props) => {
 
             <div className={s.messages}>
                 <div>{messagesElements}</div>
-            <AddMessageFormRedux/>
+            <AddMessageFormRedux onSubmit={addNewMessage}/>
             </div>
         </div>
     )
