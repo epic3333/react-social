@@ -1,15 +1,21 @@
 import React from "react";
 import {connect} from "react-redux";
 import {
-    follow, getUsers,
+    follow, requestUsers,
     setCurrentPage,
     toggleIsFollowingProgress,
     unfollow
 } from "../../redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import {
+    getFollowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUsersCount, getUsers,
+    getСurrentPage
+} from "../../redux/users-selectors";
 
 
 class UsersContainer extends React.Component {
@@ -50,7 +56,8 @@ class UsersContainer extends React.Component {
     }
 }
 
-let mapStateToProps = (state) => {
+//старый вариант реализации мапстейттупропс
+/*let mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
@@ -59,10 +66,21 @@ let mapStateToProps = (state) => {
         isFetching: state.usersPage.isFetching,
         followingInProgress: state.usersPage.followingInProgress
     }
+}*/
+
+let mapStateToProps = (state) => {
+    return {
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getСurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state)
+    }
 }
 
 export default compose(
-    //withAuthRedirect,
+    //withAuthRedirect, (редирект на страницу логина если не залогинились, что бы включить раскомментировать)
     connect(mapStateToProps,
-        {follow, unfollow, setCurrentPage, toggleIsFollowingProgress, getUsers})
+        {follow, unfollow, setCurrentPage, toggleIsFollowingProgress, getUsers: requestUsers})
 )(UsersContainer)
