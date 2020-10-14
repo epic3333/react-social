@@ -19,4 +19,5 @@ test('reducer test new post added', () => {
 
     //3. expectation
     expect (newState.posts.length).toBe(5);
+    expect (newState.posts[4].message).toBe('newPostText');
 });
