@@ -4,22 +4,19 @@ import Preloader from '../../common/Preloader/Preloader'
 import ProfileStatus from './ProfileStatus'
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
-const ProfileInfo = (props) => {
+const ProfileInfo = ({profile, status, updateStatus}) => {
 
-    if (!props.profile) {
+    if (!profile) {
         return <Preloader/>
     }
 
     return (
         <div>
-            {/*<div>
-                <img src='https://www.wpexplorer.com/wp-content/uploads/wordpress-image-optimization-guide.jpg'></img>
-            </div>*/}
             <div className={s.descriptionBlock}>
-                <img src={props.profile.photos.large} alt=""/>
-                <div>Мое имя: {props.profile.fullName}</div>
-                <div>Обо мне: {props.profile.aboutMe}</div>
-                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+                <img src={profile.photos.large} alt=""/>
+                <div>Мое имя: {profile.fullName}</div>
+                <div>Обо мне: {profile.aboutMe}</div>
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
             </div>
         </div>
     );
